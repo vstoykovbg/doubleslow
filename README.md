@@ -88,3 +88,8 @@ You should get this output:
 ## Video demonstration
 
 [![Video demo](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
+
+## Discussion
+
+* [Discuission on /r/crypto](https://old.reddit.com/r/crypto/comments/ijln29/i_made_a_key_stretching_script_what_could_go/)
+
