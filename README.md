@@ -39,16 +39,19 @@ By using an air-gapped computer, you make sure that the hypothetical malware doe
 
 The script is more a proof of concept, but maybe you can use it in production if you take some precautions:
 
+- Use an air-gapped computer to run the `doubleslow-base.py` script.
 - Never attach the air-gapped computer to the Internet after you use it for key stretching.
 - Make sure nobody watches your monitor (visually or through the electromagnetic radiation emitted by the monitor).
-- Use an air-gapped computer to run the `doubleslow-base.py` script.
-- Remove the hard drive of the air-gapped computer.
-- Never connect the air-gapped computer to other devices (you intend to use with other computers in the future).
-- Run the OS from a read only optical disk and make sure that there is no way for a hypothetical malware to write to the optical disk (i.e. use read-only optical drive, do not insert the optical disk into other computer).
+- Remove the hard drive of the air-gapped computer before using it for key stretching for the first time.
+- Remove other unnecessary components of the air-gapped computer before using it for key stretching for the first time: video controllers (use the integrated one in the motherboard), network adapters, disk controllers, etc.
+- Never connect the air-gapped computer to other devices you may want to use with other computers in the future. All devices once connected to the air-gapped computer should be considered infected with malware and containing all your secrets.
+- Run the OS from a read only optical disk and make sure that there is no way for a hypothetical malware to write to the optical disk (i.e. use read-only optical drive, do not insert the optical disk into other computer after it's being used). Are you sure that the optical drive is read only? What is under that sticker... 
 - Make sure to not insert the optical disk on other computer (just in case there is a malware writing secrets on your air-gapped computer).
 - Do not use USB devices on the air-gapped computer. Because you may forget and insert the same device to another computer.
 - Do not use even USB keyboard or USB mouse. You may forget and attach the keyboard/mouse to an online computer and... it's gone.
 - Read how malware can transmit information from air-gapped computers and take necessary precautions (i.e. flashing status LEDs of the hard drive, emitting sound or ultrasound, modulating the USB signals to make a transmitter).
+- Do not use machine readable mediums (USB flash drives, optical disks) to copy data from/to the air-gapped computer.
+- Once an optical disk is used to boot your air-gapped computer, don't insert the same optical disk into other computer's optical drive (you don't know for sure that there is no malware in your air-gapped computer, writing your secrets on the optical disk somewhat outside of the standard file system).
 
 Ideally, the output from the script should be imported to your program directly, without copy/pasting visible text from the console (without showing the secrets on the screen).
 
