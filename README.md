@@ -76,3 +76,7 @@ You should get this output:
 <blockquote>BIP39 output:
   
  ```dose engage you plate shift advice feel fish bamboo icon mammal fashion school almost inmate village trap error defy gold ball manual guilt icon```</blockquote>
+
+## Video demonstration
+
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
