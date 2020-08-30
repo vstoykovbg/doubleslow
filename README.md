@@ -54,8 +54,10 @@ The script is more a proof of concept, but maybe you can use it in production if
 - Read how malware can transmit information from air-gapped computers and take necessary precautions (i.e. flashing status LEDs of the hard drive, emitting sound or ultrasound, modulating the USB signals to make a transmitter).
 - Do not use machine readable mediums (USB flash drives, optical disks) to copy data from/to the air-gapped computer.
 - Once an optical disk is used to boot your air-gapped computer, don't insert the same optical disk into other computer's optical drive (you don't know for sure that there is no malware in your air-gapped computer, writing your secrets on the optical disk somewhat outside of the standard file system).
+- For moving cryptographic signatures and public keys script like [RFC1751-encoding-decoding](https://github.com/vstoykovbg/RFC1751-encoding-decoding) can be used.
+- Using QR codes (instead of the above mentioned method) can be dangerous because hypothetical malware can display secrets on the monitor in a way humans can't see the transmission (by some fast and subtle amplitude modulation of the pixel's colour and brightness).
 
-Ideally, the output from the script should be imported to your program directly, without copy/pasting visible text from the console (without showing the secrets on the screen).
+Ideally, the output from the script should be imported to your program directly, without copy/pasting visible text from the console (without showing the secrets on the screen). For example, the script can be modified to create Electrum wallet file (and this way not displaying secrets on the monitor).
 
 ## Example
 
