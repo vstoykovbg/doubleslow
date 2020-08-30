@@ -295,7 +295,7 @@ elif len(sys.argv) == 1:
    print("The external key stretching will be performed. If you don't want this stop the script and run it with argument \"one\" or enter 0 when asked for number of iterations on the second stage.")
    external_key_stretching = "yes"
 
-security_warning = "\n\n !!! Security warning: since the keys are displayed they might be compromised, because in some consoles the history is being recorded on the hard drive. Also, there might be a camera or device receiving the radiation emitted from the monitor. It's recommended to use this script only on air-gapped computers without a hard drive (OS is run from optical discs). You may also consider modifying the script not to show the keys on the screen.\n"
+security_warning = "\n\n !!! Security warning: since the keys are displayed they might be compromised, because in some consoles the history is being recorded on the hard drive. Also, there might be a camera or device receiving the radiation emitted from the monitor. It's recommended to use this script only on air-gapped computers without a hard drive (the OS is run from optical discs). You may also consider modifying the script not to show the keys on the screen.\n"
 
 security_warning = security_warning + "\n\n !!! DANGER of catastrophic data loss! One bit flip (due to cosmic rays for example) can make the result of the hash functions completely different. Run the scripts several times to confirm that they produce the same output given the same input. Read how these scripts work and why the risk of bit flip is high (hint: RAM usage).\n"
 

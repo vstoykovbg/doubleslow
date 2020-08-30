@@ -47,7 +47,7 @@ def SlowKDF_stage_2(myinput, mymemory, iterations):
     return sha256(input_digest+digest).digest()
 
 
-security_warning = "\n\n !!! Security warning: since the keys are displayed they might be compromised, because in some consoles the history is being recorded on the hard drive. Also, there might be a camera or device receiving the radiation emitted from the monitor. It's recommended to use this script only on air-gapped computers without a hard drive (OS is run from optical discs). You may also consider modifying the script not to show the keys on the screen.\n"
+security_warning = "\n\n !!! Security warning: since the keys are displayed they might be compromised, because in some consoles the history is being recorded on the hard drive. Also, there might be a camera or device receiving the radiation emitted from the monitor. It's recommended to use this script only on air-gapped computers without a hard drive (the OS is run from optical discs). You may also consider modifying the script not to show the keys on the screen.\n"
 
 security_warning = security_warning + "\n\n !!! DANGER of catastrophic data loss! One bit flip (due to cosmic rays for example) can make the result of the hash functions completely different. Run the scripts several times to confirm that they produce the same output given the same input. Read how these scripts work and why the risk of bit flip is high (hint: RAM usage).\n"
 
