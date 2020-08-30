@@ -1,7 +1,7 @@
 # Doubleslow Keystretcher
 ## Key stretching on air-gapped computer with additional "external key stretching" on another computer
 
-The script utilizes mnemonic code (RFC1751) and checksums to prevent i/o human errors. The user is entering the settings on the first script (`doubleslow-base.py`), the settings for the next stage are encoded inside the mnemonic code (protected with checksums).
+The script utilizes mnemonic code (RFC1751, BIP39) and checksums to prevent i/o human errors. The user is entering the settings on the first script (`doubleslow-base.py`), the settings for the next stage are encoded inside the mnemonic code (protected with checksums).
 
 The double-stage process is used to ensure that in case the second computer is compromised the key will be protected against dictionary brute-force attacks by the key stretching done on the first (air-gapped) computer. It's not practical to use as an air-gapped computer too powerful computer, because most of the time the air-gapped computer will do nothing. For example, you can use your old Raspberry Pi or your old desktop computer (with stripped out unnecessary parts) for the first stage of key stretching.
 
