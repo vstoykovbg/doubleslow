@@ -53,14 +53,21 @@ Ideally, the output from the script should be imported to your program directly,
 
 For this input:
 
+<blockquote>
 Salt: `together device asthma air nasty around notable invite team during health judge enemy clay possible across another pilot able file amazing edge forest virus`
+
 Number of iterations: `4`
+
 Number of iterations on the second stage (external key stretching): `5`
+
 Memory (for the first stage): `64 MiB`
+
 Memory (for the second stage): `1 GiB`
+
 Password: `correct horse battery staple`
+</blockquote>
 
 You should get this output:
 
-BIP39 output: `dose engage you plate shift advice feel fish bamboo icon mammal fashion school almost inmate village trap error defy gold ball manual guilt icon
-`
+<blockquote>BIP39 output: `dose engage you plate shift advice feel fish bamboo icon mammal fashion school almost inmate village trap error defy gold ball manual guilt icon
+`</blockquote>
