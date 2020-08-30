@@ -48,3 +48,19 @@ The script is more a proof of concept, but maybe you can use it in production if
 - Read how malware can transmit information from air-gapped computers and take necessary precautions (i.e. flashing status LEDs of the hard drive, emitting sound or ultrasound, modulating the USB signals to make a transmitter).
 
 Ideally, the output from the script should be imported to your program directly, without copy/pasting visible text from the console (without showing the secrets on the screen).
+
+## Example
+
+For this input:
+
+Salt: `together device asthma air nasty around notable invite team during health judge enemy clay possible across another pilot able file amazing edge forest virus`
+Number of iterations: `4`
+Number of iterations on the second stage (external key stretching): `5`
+Memory (for the first stage): `64 MiB`
+Memory (for the second stage): `1 GiB`
+Password: `correct horse battery staple`
+
+You should get this output:
+
+BIP39 output: `dose engage you plate shift advice feel fish bamboo icon mammal fashion school almost inmate village trap error defy gold ball manual guilt icon
+`
