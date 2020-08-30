@@ -42,7 +42,8 @@ The script is more a proof of concept, but maybe you can use it in production if
 - Never attach the air-gapped computer to the Internet after you use it for key stretching.
 - Make sure nobody watches your monitor (visually or through the electromagnetic radiation emitted by the monitor).
 - Use an air-gapped computer to run the `doubleslow-base.py` script.
-- Remove the hard drive of the air-gapped computer and never connect it to other devices.
+- Remove the hard drive of the air-gapped computer.
+- Never connect the air-gapped computer to other devices (you intend to use with other computers in the future).
 - Run the OS from a read only optical disk and make sure that there is no way for a hypothetical malware to write to the optical disk (i.e. use read-only optical drive, do not insert the optical disk into other computer).
 - Make sure to not insert the optical disk on other computer (just in case there is a malware writing secrets on your air-gapped computer).
 - Do not use USB devices on the air-gapped computer. Because you may forget and insert the same device to another computer.
