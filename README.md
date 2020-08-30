@@ -33,14 +33,15 @@ The password is normalized with NFKC by the script.
 
 In reality you never know if you have a malware stealing your secrets installed inside your CPU (on the OS running inside your CPU, not accessible to the main OS), hard drive's firmware, optical drive's firmware, UEFI/BIOS, etc. (they all have access to the RAM!).
 
-By using air-gapped computer you make sure that the hypothetical malware does not have a chance to transmit the stolen secrets through the Internet.
+By using an air-gapped computer, you make sure that the hypothetical malware does not have a chance to transmit the stolen secrets through the Internet.
 
 The script is more a proof of concept, but maybe you can use it in production if you take some precautions:
 
+- Never attach the air-gapped computer to the Internet after you use it for key stretching.
 - Make sure nobody watches your monitor (visually or through the electromagnetic ratiation emitted by the monitor).
 - Use an air-gapped computer to run the `doubleslow-base.py` script.
 - Remove the hard drive of the air-gapped computer and never connect it to other devices.
-- Run the OS from a read only optical disk and make sure that there is no way for a hypothetical malware to write to the optical disk.
+- Run the OS from a read only optical disk and make sure that there is no way for a hypothetical malware to write to the optical disk (i.e. use read-only optical drive, do not insert the optical disk into other computer).
 - Make sure to not insert the optical disk on other computer (just in case there is a malware writing secrets on your air-gapped computer).
 - Do not use USB devices on the air-gapped computer. Because you may forget and insert the same device to another computer.
 - Do not use even USB keyboard or USB mouse. You may forget and attach the keyboard/mouse to an online computer and... it's gone.
