@@ -79,4 +79,4 @@ You should get this output:
 
 ## Video demonstration
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
+[![Video demo](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
