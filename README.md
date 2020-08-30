@@ -1,11 +1,13 @@
 # Doubleslow Keystretcher
 ## Key stretching on air-gapped computer with additional "external key stretching" on another computer
 
-The script utilizes mnemonic code (RFC1751, BIP39) and checksums to prevent i/o human errors. The user enters the settings interactively in the first script (`doubleslow-base.py`), the settings for the next stage are encoded inside a mnemonic code (protected with checksums).
+The script utilizes mnemonic code (RFC1751, BIP39) and checksums to prevent i/o human errors. 
 
 It is based on modern CPU and memory intensive key derivation functions (Argon2, Scrypt).
 
-The double-stage process is used to ensure that in case the second computer is compromised the key will be protected against dictionary brute-force attacks by the key stretching done on the first (air-gapped) computer. It's not practical to use as an air-gapped computer too powerful computer, because most of the time the air-gapped computer will be doing nothing. For example, you can use your old Raspberry Pi or your old desktop computer (with stripped out unnecessary parts) for the first stage (`doubleslow-base.py`).
+The user enters the settings interactively in the first script (`doubleslow-base.py`), the settings for the next stage are encoded inside a mnemonic code (protected with checksums).
+
+The double-stage process is used to ensure that in case the second computer is compromised the key will be protected against dictionary brute-force attacks by the key stretching done on the first (air-gapped) computer. It's not practical to use as an air-gapped computer too powerful computer, because most of the time the air-gapped computer will be doing nothing (assuming it will be never connected to the Internet or other computers). For example, you can use your old Raspberry Pi or your old desktop computer (with stripped out unnecessary parts) for the first stage (`doubleslow-base.py`).
 
 Some enthusiasts can even implement additional ("stage zero") key stretching (with some low-RAM intensive key stretching functions, on very old computers or microcontrollers). It's more difficult to hide malware inside ancient computers or simple microcontrollers.
 
@@ -84,3 +86,4 @@ You should get this output:
 ## Video demonstration
 
 [![Video demo](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
+
