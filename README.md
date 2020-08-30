@@ -80,5 +80,3 @@ You should get this output:
 ## Video demonstration
 
 [![Video demo](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/O-MAZZgX868" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
