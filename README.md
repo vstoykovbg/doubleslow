@@ -54,7 +54,9 @@ Ideally, the output from the script should be imported to your program directly,
 For this input:
 
 <blockquote>
-Salt: ```together device asthma air nasty around notable invite team during health judge enemy clay possible across another pilot able file amazing edge forest virus``` 
+Salt:
+  
+```together device asthma air nasty around notable invite team during health judge enemy clay possible across another pilot able file amazing edge forest virus``` 
 
 Number of iterations: `4`
 
@@ -69,4 +71,6 @@ Password: `correct horse battery staple`
 
 You should get this output:
 
-<blockquote>BIP39 output: ```dose engage you plate shift advice feel fish bamboo icon mammal fashion school almost inmate village trap error defy gold ball manual guilt icon```</blockquote>
+<blockquote>BIP39 output:
+  
+ ```dose engage you plate shift advice feel fish bamboo icon mammal fashion school almost inmate village trap error defy gold ball manual guilt icon```</blockquote>
