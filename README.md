@@ -64,7 +64,7 @@ Ideally, the output from the script should be imported to your program directly,
 For this input:
 
 <blockquote>
-Salt:
+BIP39 salt:
   
 ```together device asthma air nasty around notable invite team during health judge enemy clay possible across another pilot able file amazing edge forest virus``` 
 
@@ -88,4 +88,3 @@ You should get this output:
 ## Video demonstration
 
 [![Video demo](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
-
