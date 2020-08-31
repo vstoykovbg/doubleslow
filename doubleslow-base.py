@@ -108,7 +108,7 @@ def get_memory(min_memory, max_memory, text):
 
         int_memory = int_memory * multiplier
 
-        if int_memory <= min_memory:
+        if int_memory < min_memory:
             print("Too little memory [",int_memory, "MiB ], it should be at least ", min_memory, "MiB")
             continue
         elif int_memory > max_memory:
