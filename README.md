@@ -79,11 +79,17 @@ Memory (for the second stage): `1 GiB`
 Password: `correct horse battery staple`
 </blockquote>
 
-You should get this output:
+You should get this output with version `v0.0.1`:
 
 <blockquote>BIP39 output:
   
  ```dose engage you plate shift advice feel fish bamboo icon mammal fashion school almost inmate village trap error defy gold ball manual guilt icon```</blockquote>
+
+With version `v0.0.2` the output is:
+
+<blockquote>BIP39 output:
+  
+ ```prepare embrace goat floor lounge eight evil churn entire vintage logic state obey refuse embark saddle potato clap release rapid tackle aunt kit cable```</blockquote>
 
 ## Video demonstration
 
