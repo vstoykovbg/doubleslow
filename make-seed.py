@@ -4,10 +4,7 @@ from mnemonic import Mnemonic
 from os.path import exists
 from os import urandom
 from hashlib import sha256
-import binascii
-
-def bytestring_xor(bytestr1, bytestr2):
-    return bytes(a ^ b for a, b in zip(bytestr1, bytestr2))
+from Crypto.Util.strxor import strxor
 
 def get_random_bytes(howmany):
     if exists("/dev/random"):
@@ -19,7 +16,7 @@ def get_random_bytes(howmany):
     
 user_entropy = input("Type some random data (from dice rolls, decks of cards, etc): ").encode('utf-8')
 
-myrandom = bytestring_xor(get_random_bytes(32), sha256(user_entropy+urandom(1024)).digest())
+myrandom = strxor(get_random_bytes(32), sha256(user_entropy+urandom(1024)).digest())
 
 print ("\n BIP39 mnemonic, to be used as salt for the \"doubleslow-base.py\": \n\n")
 
