@@ -59,7 +59,7 @@ listener.start()
 print("Please move the mouse over areas of the screen where this script can \"see\"")
 print("the movements. You can confirm that the script sees the mouse movements")
 print("by observing the change in the digits below.")
-print("On systems using Xwayland the mouse movements are visible only over")
+print("On systems using Xwayland, the mouse movements are visible only over")
 print("some areas.")
 
 read = input("Press enter when you want to stop collecting randomnes from the mice.\n")
@@ -91,7 +91,7 @@ try:
 except Exception as detail:
     print("  Error. Can't create mnemonic. ", detail)
 
-    print ("Here is some random base64 data instead.")
+    print ("Here are some random base64 data instead.")
 
     print ("\nRandom base64 encoded data:\n")
     print (binascii.b2a_base64(global_hash).decode("utf-8"))
