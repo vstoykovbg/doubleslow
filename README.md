@@ -91,6 +91,16 @@ With version `v0.0.2` the output is:
   
  ```prepare embrace goat floor lounge eight evil churn entire vintage logic state obey refuse embark saddle potato clap release rapid tackle aunt kit cable```</blockquote>
 
+## Randomness from the sound input
+
+The script `doublerandom-seed-generator.py` creates a random seed from randomness collected from the sound input and the `haveged`. Make sure you have `arecord` and `haveged` installed on your system.
+
+There is usually noise at the microphone input even if there is no microphone attached. In this case you need to increase the microphone input's volume to the max. Don't forget to check if the microphone input is muted (it must not be muted).
+
+Of course, it works better with a microphone or a [noise generator](https://www.google.com/search?q=simple+noise+generator+circuit) attached to the microphone input.
+
+You need to boost the volume if the signal from the microphone is weak. You can check the signal level with apps like `pavucontrol` and `audacity`.
+
 ## Video demonstration
 
 [![Video demo](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
