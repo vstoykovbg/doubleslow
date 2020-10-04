@@ -101,6 +101,13 @@ Of course, it works better with a microphone or a [noise generator](https://www.
 
 You need to boost the volume if the signal from the microphone is weak. You can check the signal level with apps like `pavucontrol` and `audacity`.
 
+You can use these commands to boost the microphone input's volume:
+
+```
+$ amixer sset 'Mic Boost' 100%
+$ amixer sset 'Mic' 100%
+```
+
 ## Video demonstration
 
 [![Video demo](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
