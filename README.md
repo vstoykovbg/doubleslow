@@ -91,9 +91,13 @@ With version `v0.0.2` the output is:
   
  ```prepare embrace goat floor lounge eight evil churn entire vintage logic state obey refuse embark saddle potato clap release rapid tackle aunt kit cable```</blockquote>
 
+## Randomness from the mouse
+
+The script `mouse-seed-generator.py` uses the mouse movements as a source of randomnes to produce a BIP39 mnemonic.
+
 ## Randomness from the sound input
 
-The script `doublerandom-seed-generator.py` creates a random seed from randomness collected from the sound input and the `haveged`. Make sure you have `arecord` and `haveged` installed on your system.
+The script `doublerandom-seed-generator.py` creates a BIP39 mnemonic by collecting randomness from the sound input and the `haveged`. Make sure you have `arecord` and `haveged` installed on your system.
 
 There is usually noise at the microphone input even if there is no microphone attached. In this case you need to increase the microphone input's volume to the max. Don't forget to check if the microphone input is muted (it must not be muted).
 
