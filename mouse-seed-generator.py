@@ -65,7 +65,7 @@ print("some areas.")
 read = input("Press enter when you want to stop collecting randomnes from the mice.\n")
 listener.stop()
 
-global_hash = sha512(global_buffer + global_hash + get_random_bytes(32)).digest()
+global_hash = sha512(global_buffer + global_hash + get_random_bytes(256) + read).digest()
 global_hash = strxor( global_hash, get_random_bytes(64) )
 
 try:
