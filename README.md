@@ -93,7 +93,7 @@ With version `v0.0.2` the output is:
 
 ## Randomness from the mouse
 
-The script `mouse-seed-generator.py` uses the mouse movements as a source of randomnes to produce a BIP39 mnemonic.
+The script `mouse-seed-generator.py` uses the mouse movements as a source of randomnes to produce a BIP39 mnemonic. It needs [X](https://en.wikipedia.org/wiki/X_Window_System) to be running.
 
 ## Randomness from the sound input
 
