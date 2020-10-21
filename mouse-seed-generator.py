@@ -26,7 +26,7 @@ global_counter = 0
 
 def get_time():
     if "time_ns" in dir(time):
-        timenow = time.time_ns() / (10 ** 9)
+        timenow = time.time_ns()
     else:
         timenow = time.time()
     return timenow
