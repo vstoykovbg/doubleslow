@@ -19,8 +19,10 @@ def get_random_bytes(howmany):
 
 mutex = threading.Lock()
 
+# Improving efficiency of concatenation by using bytearray instead of bytestring
+# https://www.guyrutenberg.com/2020/04/04/fast-bytes-concatenation-in-python/
+global_buffer = bytearray()
 global_hash = get_random_bytes(32)
-global_buffer = b''
 global_counter = 0
 
 
@@ -50,7 +52,9 @@ def on_move(x, y):
         buffer_len=len(global_buffer)
         if buffer_len > 1024 * 15:
             global_hash = sha512(global_buffer + global_hash).digest()
-            global_buffer = global_hash
+            global_buffer = bytearray()
+            global_buffer += global_hash
+            assert isinstance(global_buffer, bytearray)
             global_counter += 1
 
 
@@ -68,14 +72,14 @@ listener.stop()
 
 read = read.encode()
 
-global_hash = sha512(global_buffer + global_hash + get_random_bytes(256) + read).digest()
+global_hash = sha512(bytes(global_buffer + global_hash + get_random_bytes(256) + read)).digest()
 global_hash = strxor( global_hash, get_random_bytes(64) )
 
 try:
     from mnemonic import Mnemonic
     from hashlib import sha256
 
-    myrandom = strxor(get_random_bytes(32), sha256(global_hash+urandom(1024)+global_buffer).digest())
+    myrandom = strxor(get_random_bytes(32), sha256(bytes(global_buffer + global_hash + urandom(1024))).digest())
 
     print ("\n\n BIP39 mnemonic: \n\n")
 
