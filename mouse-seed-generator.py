@@ -7,6 +7,7 @@ from hashlib import sha512
 from os import urandom
 import binascii
 from Crypto.Util.strxor import strxor
+import threading
 
 def get_random_bytes(howmany):
     if exists("/dev/random"):
@@ -15,6 +16,8 @@ def get_random_bytes(howmany):
     else:
         print ("/dev/random not found, using os.urandom instead.")
         return urandom(howmany)
+
+mutex = threading.Lock()
 
 global_hash = get_random_bytes(32)
 global_buffer = b''
@@ -40,17 +43,15 @@ def on_move(x, y):
         end_msg = " Enough move, press enter to stop"
     else:
         end_msg = ""
-    print(global_counter, this_data_chunk, end_msg, "  ")
-    print ("\033[A\033[A") # up up (and go to new line) = up
-    global_buffer += this_data_chunk
-    buffer_len=len(global_buffer)
-
-    if buffer_len > 1024 * 15:
-        global_hash = sha512(global_buffer + global_hash).digest()
-        global_buffer = global_hash
-#        print
-#        print (binascii.b2a_base64(global_hash).decode("utf-8"))
-        global_counter += 1
+    with mutex:
+        print(global_counter, this_data_chunk, end_msg, "  ")
+        print ("\033[A\033[A") # up up (and go to new line) = up
+        global_buffer += this_data_chunk
+        buffer_len=len(global_buffer)
+        if buffer_len > 1024 * 15:
+            global_hash = sha512(global_buffer + global_hash).digest()
+            global_buffer = global_hash
+            global_counter += 1
 
 
 listener = mouse.Listener(on_move=on_move)
@@ -59,7 +60,7 @@ listener.start()
 print("Please move the mouse over areas of the screen where this script can \"see\"")
 print("the movements. You can confirm that the script sees the mouse movements")
 print("by observing the change in the digits below.")
-print("On systems using Xwayland, the mouse movements are visible only over")
+print("On systems using Xwayland the mouse movements are visible only over")
 print("some areas.")
 
 read = input("Press enter when you want to stop collecting randomnes from the mice.\n")
