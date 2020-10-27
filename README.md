@@ -11,8 +11,6 @@ The double-stage process is used to ensure that in case the second computer is c
 
 Some enthusiasts can even implement additional ("stage zero") key stretching (with some low-RAM intensive key stretching functions, on very old computers or microcontrollers). It's more difficult to hide malware inside ancient computers or simple microcontrollers.
 
-For the "zero" stage a simple (or "scientific") calculator can be used (you need to remember or write down the algorithm).
-
 Don't forget to make a backup of the script, along with your salt and settings (number of iterations, RAM usage). Future versions may not be compatible!
 
 The salt used by the `doubleslow-base.py` can be in different formats:
