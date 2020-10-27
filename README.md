@@ -112,6 +112,29 @@ $ amixer sset 'Mic Boost' 100%
 $ amixer sset 'Mic' 100%
 ```
 
+## Randomness mixer: randomness from the sound input and the mouse
+
+The script `randomness-mixer.py` creates a BIP39 mnemonic by collecting randomness from the mouse, the sound input and the `haveged`. Make sure you have `arecord` and `haveged` installed on your system.
+
+In case the script is started without [X](https://en.wikipedia.org/wiki/X_Window_System) (in the virtual terminal) it will read the mouse movements directly from the `/dev/input/mice`. However, it needs to be started as *root* to do this (only the *root* have permission to access `/dev/input/mice`).
+
+The program `arecord` will not work in virtual terminal if the script is started as *root* and the [X](https://en.wikipedia.org/wiki/X_Window_System) is running. But this problem can be avoided simply by running the script in the graphical environment (terminal emulator like `xterm`, `gnome-terminal`) or shutting down the [X](https://en.wikipedia.org/wiki/X_Window_System).
+
+## Dependencies
+
+You may need to install these Python 3 modules (if they are not already installed):
+
+```
+$ pip3 install -r requirements.txt
+```
+
+To install `arecord` and `haveged`:
+
+```
+$ sudo apt-get install alsa-utils haveged
+```
+
+
 ## Video demonstration
 
 [![Video demo](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
