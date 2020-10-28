@@ -128,7 +128,7 @@ The script `randomness_choice.py` requires `randomness_mixer.py` to be in the sa
 
 The script `random-words.py` chooses random words from a dictionary. It depends on `randomness_choice.py` and `randomness_mixer.py` (must be in the same directory).
 
-If no parameter is specified the script is searching for dictionaries from this hardcoded list:
+If no parameter is specified the script is searching for a dictionary from this hardcoded list (uses the first file that exists):
 
 ```
 filename_list = [
@@ -140,7 +140,7 @@ filename_list = [
 ]
 ```
 
-The script may ask more than once for random data from the user if big number of words is specified. In most cases asking for 15 words will require only one call of `refill_global_accumulator()`.
+The script may ask more than once for a random data from the user (if big number of words is specified). In most cases asking for 15 words will require only one call of `refill_global_accumulator()`.
 
 ## Dependencies
 
