@@ -3,7 +3,6 @@ scrypt
 argon2
 bitcoin
 mnemonic
-pynput
 base58
 datetime
 
