@@ -124,6 +124,24 @@ The script `randomness_choice.py` creates random numbers in a range. It uses ran
 
 The script `randomness_choice.py` requires `randomness_mixer.py` to be in the same directory.
 
+## Random words from a dictionary
+
+The script `random-words.py` chooses random words from a dictionary. It depends on `randomness_choice.py` and `randomness_mixer.py` (must be in the same directory).
+
+If no parameter is specified the script is searching for dictionaries from this hardcoded list:
+
+```
+filename_list = [
+    "wordlist.txt",
+    "/usr/share/keepassxc/wordlists/eff_large.wordlist",
+    "/usr/share/dict/american-english",
+    "/usr/share/dict/british-english",
+    "/usr/share/dict/cracklib-small",
+]
+```
+
+The script may ask more than once for random data from the user if big number of words is specified. In most cases asking for 15 words will require only one call of `refill_global_accumulator()`.
+
 ## Dependencies
 
 You may need to install these Python 3 modules (if they are not already installed):

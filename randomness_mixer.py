@@ -13,6 +13,8 @@ DEVNULL = open(devnull, 'wb')
 
 mutex = threading.Lock()
 
+global_ask_for_volume = True
+
 def get_random_bytes(howmany):
     if exists("/dev/random"):
         with open("/dev/random", 'rb') as f:
@@ -163,14 +165,17 @@ def get_hash_with_mouse_alternative():
 
     hash_sound = get_random_bytes(32)
     haveged_chunk = b''
-    user_entropy = ""
+    user_entropy = b''
+    global global_ask_for_volume
 
     try:
 
-        print("Please boost the microphone input volume and connect a microphone")
-        print("or other noise source.")
-
-        user_entropy = input("Press Enter to continue.").encode('utf-8')
+        if global_ask_for_volume:
+            print("Please boost the microphone input volume and connect a microphone")
+            print("or other noise source.")
+            user_entropy = input("Press Enter to continue.").encode('utf-8')
+            print ("\033[A\033[A") # up up (and go to new line) = up
+            global_ask_for_volume = False
 
         for counter in range(10):
             print ("Reading data from sound input... Iteration: ", counter)
@@ -209,14 +214,17 @@ def get_hash_with_haveged_and_arecord():
 
     hash_sound = get_random_bytes(32)
     haveged_chunk = b''
-    user_entropy = ""
+    user_entropy = b''
+    global global_ask_for_volume
 
     try:
 
-        print("Please boost the microphone input volume and connect a microphone")
-        print("or other noise source.")
-
-        user_entropy = input("Press Enter to continue.").encode('utf-8')
+        if global_ask_for_volume:
+            print("Please boost the microphone input volume and connect a microphone")
+            print("or other noise source.")
+            user_entropy = input("Press Enter to continue.").encode('utf-8')
+            print ("\033[A\033[A") # up up (and go to new line) = up
+            global_ask_for_volume = False
 
         for counter in range(10):
             print ("Reading data from sound input... Iteration: ", counter)

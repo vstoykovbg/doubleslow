@@ -17,7 +17,7 @@ def refill_global_accumulator():
     global global_accumulator
     global global_use_mouse
 
-    print("Refillilng the random numbers accumulator - refill_global_accumulator() called.")
+    print("Refilling the random numbers accumulator - refill_global_accumulator() called.")
 
     this_hash = b''
 
@@ -143,13 +143,13 @@ def main():
             break
 
 
-    list_of_ranom_numbers = list()
+    list_of_random_numbers = list()
 
     for c in range(how_many):
-        list_of_ranom_numbers.append(random_below(exclusive_range))
+        list_of_random_numbers.append(random_below(exclusive_range))
 
     print (how_many, "random numbers between 0 and", exclusive_range - 1, ":")
-    print (list_of_ranom_numbers)
+    print (list_of_random_numbers)
 
 if __name__ == "__main__":
     main()
