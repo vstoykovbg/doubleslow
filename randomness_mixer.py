@@ -153,13 +153,13 @@ def randomness_from_dev_input_mice():
                 buf = file.read(3);
                 my_time = get_time()
                 local_buffer += str(my_time).encode('utf-8') + buf
-            print (my_time, counter, "from", outer_range, "    ")
+            print (my_time, counter, "from", outer_range, "        ")
             print ("\033[A\033[A") # up up (and go to new line) = up
 
     return sha512(bytes(local_buffer)).digest()
 
 
-def get_hash_alternative():
+def get_hash_with_mouse_alternative():
 
     hash_sound = get_random_bytes(32)
     haveged_chunk = b''
@@ -205,19 +205,68 @@ def get_hash_alternative():
     return strxor( hash_64_bytes, get_random_bytes(64) )
 
 
-def main():
+def get_hash_with_haveged_and_arecord():
+
+    hash_sound = get_random_bytes(32)
+    haveged_chunk = b''
+    user_entropy = ""
+
+    try:
+
+        print("Please boost the microphone input volume and connect a microphone")
+        print("or other noise source.")
+
+        user_entropy = input("Press Enter to continue.").encode('utf-8')
+
+        for counter in range(10):
+            print ("Reading data from sound input... Iteration: ", counter)
+            print ("\033[A\033[A") # up up (and go to new line) = up
+
+            random_sound_chunk = get_random_sound()
+
+            if len(random_sound_chunk) < 100000:
+                print_tolerant_error("⚠ We got from arecord something unexpected.", "")
+
+            hash_sound = sha512(hash_sound + random_sound_chunk).digest()
+
+    except Exception as detail:
+        print_tolerant_error("⚠ Trying to get data from arecord failed.", detail)
+
+    try:
+        haveged_chunk = haveged_1024_bytes()
+    except Exception as detail:
+        print_tolerant_error("⚠ Trying to get data from haveged failed.", detail)
+
+    user_entropy += input("Please type some random data (from dice rolls, decks of cards, etc): ").encode('utf-8')
+
+    hash_64_bytes = sha512(get_random_bytes(256) + haveged_chunk + hash_sound + user_entropy).digest()
+
+    return strxor( hash_64_bytes, get_random_bytes(64) )
+
+
+def get_hash(use_mouse=True):
 
     this_hash = b''
 
-    try:
-        this_hash = get_hash_with_mouse()
-    except Exception as detail:
-        print_tolerant_error("⚠ Trying to use get_hash_with_mouse() failed.", detail)
+    if use_mouse:
+        try:
+            this_hash = get_hash_with_mouse()
+        except Exception as detail:
+            print_tolerant_error("⚠ Trying to use get_hash_with_mouse() failed.", detail)
 
-    if this_hash == b'':
-        this_hash = get_hash_alternative()
+        if this_hash == b'':
+            this_hash = get_hash_with_mouse_alternative()
+    else:
+        this_hash = get_hash_with_haveged_and_arecord()
 
-    assert this_hash != b''
+    assert len(this_hash) == 64
+
+    return this_hash
+
+
+def main():
+
+    this_hash = get_hash()
 
     try:
         from mnemonic import Mnemonic
