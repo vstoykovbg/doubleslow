@@ -1,6 +1,8 @@
 # Doubleslow Keystretcher
 ## Key stretching on air-gapped computer with additional "external key stretching" on another computer
 
+The key stretching with the "seed extension" ("extension word") in the [BIP39 specification](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) is very weak, this is why I wrote these scripts.
+
 The script utilizes mnemonic code (RFC1751, BIP39) and checksums to prevent i/o human errors. 
 
 It is based on modern CPU and memory intensive key derivation functions (Argon2, Scrypt).
