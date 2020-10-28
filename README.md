@@ -116,11 +116,13 @@ The script `randomness_mixer.py` creates a BIP39 mnemonic by collecting randomne
 
 In case the script is started without [X](https://en.wikipedia.org/wiki/X_Window_System) (in the virtual terminal) it will read the mouse movements directly from the `/dev/input/mice`. However, it needs to be started as *root* to do this (only the *root* have permission to access `/dev/input/mice`).
 
-The program `arecord` will not work in virtual terminal if the script is started as *root* and the [X](https://en.wikipedia.org/wiki/X_Window_System) is running. But this problem can be avoided simply by running the script in the graphical environment (terminal emulator like `xterm`, `gnome-terminal`) or shutting down the [X](https://en.wikipedia.org/wiki/X_Window_System).
+The program `arecord` will not work in virtual terminal if the script is started as *root* and the [X](https://en.wikipedia.org/wiki/X_Window_System) is running. But this problem can be avoided simply by running the script in the graphical environment (terminal emulator like `xterm`, `gnome-terminal`) or by shutting down the [X](https://en.wikipedia.org/wiki/X_Window_System).
 
 ## Random choice
 
 The script `randomness_choice.py` creates random numbers in a range. It uses randomness from the sound input (`arecord`), `haveged`, random data entered by the user via the keyboard, and from the mouse movements. If called with `nomouse` parameter it does not use the mouse as a randomness source.
+
+The script `randomness_choice.py` requires `randomness_mixer.py` to be in the same directory.
 
 ## Dependencies
 
