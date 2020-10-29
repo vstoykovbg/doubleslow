@@ -114,6 +114,7 @@ $ pip3 install -r requirements.txt
 - IPFS: QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w
 - IPFS gateways:[1](https://ipfs.io/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [2](https://cloudflare-ipfs.com/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [3](https://gateway.pinata.cloud/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [4](https://dweb.link/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w)
 - [Google Drive](https://drive.google.com/drive/folders/1WM31SRsOq7tjjcOzl_I7n3244BXT-Co5?usp=sharing)
+- [doubleslow.wordpress.com](https://doubleslow.wordpress.com/)
 
 ## Discussion
 
