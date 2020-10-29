@@ -110,7 +110,7 @@ $ pip3 install -r requirements.txt
 
 ## Backup
 
-- BitTorrent: [magnet:?xt=urn:btih:c244989104b60e10a7cfa04d01a377e9a9cf4317&dn=doubleslow-backup](magnet:?xt=urn:btih:c244989104b60e10a7cfa04d01a377e9a9cf4317&dn=doubleslow-backup)
+- BitTorrent: <a href="magnet:?xt=urn:btih:c244989104b60e10a7cfa04d01a377e9a9cf4317&dn=doubleslow-backup">magnet:?xt=urn:btih:c244989104b60e10a7cfa04d01a377e9a9cf4317&dn=doubleslow-backup</a>
 - IPFS: QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w
 - IPFS gateways:[1](https://ipfs.io/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [2](https://cloudflare-ipfs.com/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [3](https://gateway.pinata.cloud/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [4](https://dweb.link/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w)
 
