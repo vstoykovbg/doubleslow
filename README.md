@@ -1,15 +1,17 @@
 # Doubleslow Keystretcher
 ## Key stretching on air-gapped computer with additional "external key stretching" on another computer
 
-The key stretching with the "seed extension" ("extension word") in the [BIP39 specification](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) is very weak, this is why I wrote these scripts.
+The key stretching with the "seed extension" (also known as "extension word" and "passphrase") in the [BIP39 specification](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki) is very weak, this is why I wrote these scripts.
 
-The script utilizes mnemonic code (RFC1751, BIP39) and checksums to prevent i/o human errors. 
+These scripts utilize mnemonic code (RFC1751, BIP39) and checksums to prevent i/o human errors. 
 
-It is based on modern CPU and memory intensive key derivation functions (Argon2, Scrypt).
+The key stretching is with a modern CPU and memory intensive key derivation functions (Argon2, Scrypt).
 
 The user enters the settings interactively in the first script (`doubleslow-base.py`), the settings for the next stage are encoded inside a mnemonic code (protected with checksums).
 
 The double-stage process is used to ensure that in case the second computer is compromised the key will be protected against dictionary brute-force attacks by the key stretching done on the first (air-gapped) computer. It's not practical to use as an air-gapped computer too powerful computer, because most of the time the air-gapped computer will be doing nothing (assuming it will be never connected to the Internet or other computers). For example, you can use your old Raspberry Pi or your old desktop computer (with stripped out unnecessary parts) for the first stage (`doubleslow-base.py`).
+
+Optionally, the second stage key stretching can be disabled by entering 0 as number of iterations on the second stage or with a command line parameter "one".
 
 Some enthusiasts can even implement additional ("stage zero") key stretching (with some low-RAM intensive key stretching functions, on very old computers or microcontrollers). It's more difficult to hide malware inside ancient computers or simple microcontrollers.
 
@@ -31,7 +33,7 @@ I moved the more sophisticated scripts for generating seeds and lists of random 
 
 Since it is possible to use any Unicode string as a salt it is possible to achieve some obscurity and plausible deniability (i.e. "this is just my shopping list", "this is just my postmodern poem"). If you want to achieve even more obscurity you can run the script several times (by using the first output as input for the next iteration) with different passphrases. Also, you can make some changes to the script and remember them (what could go wrong?).
 
-The password is normalized with NFKC by the script.
+The password is normalized with NFKC.
 
 :warning: Security warning: since the keys are displayed they might be compromised, because in some consoles the history is being recorded on the hard drive. Also, there might be a camera or device receiving the radiation emitted from the monitor. It's recommended to use this script only on air-gapped computers without a hard drive (the OS is run from optical discs). You may also consider modifying the script not to show the keys on the screen.
 
