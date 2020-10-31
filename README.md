@@ -7,6 +7,8 @@ These scripts utilize mnemonic code (RFC1751, BIP39) and checksums to prevent i/
 
 The key stretching in `Doubleslow` scripts is done with a modern CPU and memory intensive key derivation functions (Argon2, Scrypt).
 
+Doubleslow is included in the [Cryptopup live distro](https://github.com/vstoykovbg/cryptopup).
+
 The user enters the settings interactively in the first script (`doubleslow-base.py`), the settings for the next stage are encoded inside a mnemonic code (protected with checksums).
 
 The double-stage process is used to ensure that in case the second computer is compromised the key will be protected against dictionary brute-force attacks by the key stretching done on the first (air-gapped) computer. It's not practical to use as an air-gapped computer too powerful computer, because most of the time the air-gapped computer will be doing nothing (assuming it will be never connected to the Internet or other computers). For example, you can use your old Raspberry Pi or your old desktop computer (with stripped out unnecessary parts) for the first stage (`doubleslow-base.py`).
