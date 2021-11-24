@@ -140,9 +140,8 @@ I don't know why this worked.
 ## Backup
 
 - BitTorrent: magnet:?xt=urn:btih:c244989104b60e10a7cfa04d01a377e9a9cf4317&dn=doubleslow-backup
-- IPFS: QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w
-- IPFS gateways:[1](https://ipfs.io/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [2](https://cloudflare-ipfs.com/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [3](https://gateway.pinata.cloud/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [4](https://dweb.link/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [local](http://localhost:8080/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w)
-- [Google Drive](https://drive.google.com/drive/folders/1WM31SRsOq7tjjcOzl_I7n3244BXT-Co5?usp=sharing)
+- IPFS: Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F
+- IPFS gateways: [local](http://localhost:8080/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F), [1](https://gateway.pinata.cloud/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F), [2](https://ninetailed.ninja/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F), [3](https://cloudflare-ipfs.com/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F), [4](https://ipfs.io/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F), [5](https://dweb.link/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F)
 - [doubleslow.wordpress.com](https://doubleslow.wordpress.com/)
 
 ## Discussion
