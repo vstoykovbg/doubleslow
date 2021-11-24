@@ -87,7 +87,8 @@ def make_digest_for_export_160_bits(input_512_bits):
     # And also to make the result round 192 bits (24 bytes), because we add additional 4 bytes (settings).
     # It needs to be round because of RFC1751 (the length of the bytestring must be a multiple of 8 bytes).
 
-    # This may cause collisions when brute-forcing with a dictionary (but only if the password is strong).
+    # This may cause collisions when brute-forcing with a dictionary.
+    # (If we lower the number of bits we get, for 128 bits it's not very likely.)
     # Collisions will frustrate the attacker (need to check many false positives).
     first_128_bits = input_512_bits[0:16]
     first_128_bits_hashed = sha256(first_128_bits).digest()
@@ -108,22 +109,26 @@ def get_memory(min_memory, max_memory, text):
     while True:
         multiplier = 1
         my_input = input(text)
-        my_input = my_input.replace(" ","")
-        my_input = my_input.upper()
-        my_input = my_input.replace("MEGABYTES","")
-        my_input = my_input.replace("MEGA BYTES","")
-        my_input = my_input.replace("MIB","")
-        my_input = my_input.replace("MB","")
-        my_input = my_input.replace("M","")
 
-        if "GIB" in my_input or "GB" in my_input or "G" in my_input:
-            multiplier = 1024
+        if my_input == "":
+            my_input = "2048" # Default 2GiB
+        else:
+            my_input = my_input.replace(" ","")
+            my_input = my_input.upper()
+            my_input = my_input.replace("MEGABYTES","")
+            my_input = my_input.replace("MEGA BYTES","")
+            my_input = my_input.replace("MIB","")
+            my_input = my_input.replace("MB","")
+            my_input = my_input.replace("M","")
 
-        my_input = my_input.replace("GIGABYTES","")
-        my_input = my_input.replace("GIGA BYTES","")
-        my_input = my_input.replace("GIB","")
-        my_input = my_input.replace("GB","")
-        my_input = my_input.replace("G","")
+            if "GIB" in my_input or "GB" in my_input or "G" in my_input:
+                multiplier = 1024
+
+            my_input = my_input.replace("GIGABYTES","")
+            my_input = my_input.replace("GIGA BYTES","")
+            my_input = my_input.replace("GIB","")
+            my_input = my_input.replace("GB","")
+            my_input = my_input.replace("G","")
 
         try:
             int_memory = int(my_input)
@@ -157,13 +162,17 @@ def get_memory(min_memory, max_memory, text):
 def read_salt():
     mysalt_input = input("Please enter the salt in your desired format: ")
 
+    mysalt_input_all_spaces_removed="".join(mysalt_input.split())
+
     try:
         print("Trying to interpret it like integer...")
-        mysalt = int_to_bytes(int(mysalt_input))
+        salt_int = int(mysalt_input_all_spaces_removed)
+        mysalt = int_to_bytes(salt_int)
     except ValueError as detail:
         print("  It does not look like an integer.", detail)
     else:
         print("  Success!")
+        print("  The number was:", salt_int)
         return mysalt
 
     try:
@@ -177,6 +186,19 @@ def read_salt():
         return mysalt
 
     try:
+        print("Trying to interpret it like BIP39 mnemonic not formatted correctly...")
+        # strip() fixes UX issue: do not recognize BIP39 mnemonic if whitespace is present at the beginning
+        mysalt_input_corrected = " ".join(mysalt_input.lower().split())
+        mysalt = mnemonic.Mnemonic('english').to_entropy(mysalt_input_corrected)
+        mysalt = bytes(mysalt)
+    except Exception as detail:
+        print("  It does not look like a BIP39 mnemonic.", detail)
+    else:
+        print("  Success!")
+        print("  The BIP39 mnemonic was:", mysalt_input_corrected)
+        return mysalt
+
+    try:
         print("Trying to interpret it like RFC1751 mnemonic...")
         mysalt = english_to_key(mysalt_input)
     except ValueError as detail:
@@ -187,7 +209,7 @@ def read_salt():
 
     try:
         print("Trying to interpret it like Base58 with a checksum...")
-        mysalt = b58decode_check(mysalt_input)
+        mysalt = b58decode_check(mysalt_input_all_spaces_removed)
     except ValueError as detail:
         print("  It does not look like a Base58 with a checksum.", detail)
     else:
@@ -196,7 +218,7 @@ def read_salt():
 
     try:
         print("Trying to interpret it like hexidecimal...")
-        mysalt = binascii.a2b_hex(mysalt_input)
+        mysalt = binascii.a2b_hex(mysalt_input_all_spaces_removed)
     except ValueError as detail:
         print("  It does not look like a hexadecimal.", detail)
     else:
@@ -205,20 +227,35 @@ def read_salt():
 
     try:
         print("Trying to interpret it like Base64 string...")
-        mysalt = binascii.a2b_base64(mysalt_input)
+        mysalt = binascii.a2b_base64(mysalt_input_all_spaces_removed)
     except ValueError as detail:
         print("  It does not look like a Base64 string.", detail)
     else:
         looks_like = binascii.b2a_base64(mysalt, newline=False).decode("utf-8")
-        if mysalt_input == looks_like:
+        if mysalt_input_all_spaces_removed == looks_like:
             print("  Success!")
             return mysalt
         else:
-            print("  It looks like Base64 string, but not exatly.")
+            print("  It looks like a Base64 string, but not exactly.")
             print("  Looks like: [", looks_like, "]")
 
     print("Normalizing the input string with NFKC...")
     mysalt = normalize('NFKC', mysalt_input)
+
+    if mysalt == mysalt_input:
+        print("The salt has not been changed by the NFKC normalization.")
+    else:
+        print("The salt has been changed by the NFKC normalization.")
+
+    if mysalt != mysalt.strip():
+        print ("* * * Warning! Your salt contains leading or trailing whitespace.")
+
+    if mysalt.count('  ') >= 1:
+        print ("* * * Warning! Your salt contains consecutive whitespaces.")
+
+    if mysalt.count('\t') >= 1:
+        print ("* * * Warning! Your salt contains one or more tabs.")
+
     return mysalt.encode()
 
 
@@ -239,14 +276,34 @@ def get_big_enough_chunk_of_salt():
     return mysalt
 
 
-def get_passphrase():
+def get_passphrase_inner():
     while True:
         mypassphrase = getpass.getpass("Passphrase: ")
 
-        if mypassphrase != getpass.getpass("Repeat passphrase: "):
+        if mypassphrase == "":
+            print ("You wrote an empty string as a passphrase!")
+
+        repeat_passphrase = getpass.getpass("Repeat passphrase: ")
+
+        if repeat_passphrase == "":
+            if mypassphrase == "":
+                print ("You confirmed an empty string as a passphrase!")
+            else:
+                print ("OK, you don't want to repeat the passphrase. It's at your own risk.")
+                print ("Please at least check your passphrase mnemonic checksum!")
+            return mypassphrase.encode()
+
+        if mypassphrase != repeat_passphrase:
             print ("ERROR: Passphrases do not match.")
             continue
-        elif mypassphrase != getpass.getpass("Repeat passphrase (again): "):
+
+        repeat_passphrase = getpass.getpass("Repeat passphrase (again): ")
+
+        if repeat_passphrase == "":
+            print ("OK, you don't want to repeat the passphrase again. It's at your own risk.")
+            break
+
+        if mypassphrase != repeat_passphrase:
             print ("ERROR: Passphrases do not match.")
             continue
         else:
@@ -256,11 +313,75 @@ def get_passphrase():
     mypassphrase_normalized = normalize('NFKC', mypassphrase)
 
     if mypassphrase_normalized == mypassphrase:
-        print("The normalization did not made any changes.")
+        print("The passphrase has not been changed by the NFKC normalization.")
     else:
-        print("The normalization made changes.")
+        print("The passphrase has been changed by the NFKC normalization.")
+
+    if mypassphrase_normalized != mypassphrase_normalized.strip():
+        print ("* * * Warning! Your passphrase contains leading or trailing whitespace.")
+
+    if mypassphrase_normalized.count('  ') >= 1:
+        print ("* * * Warning! Your passphrase contains consecutive whitespaces.")
+
+    if mypassphrase_normalized.count('\t') >= 1:
+        print ("* * * Warning! Your passphrase contains one or more tabs.")
 
     return mypassphrase_normalized.encode()
+
+def yes_or_no():
+
+    while True:
+        answer = input("Your answer (yes/no):")
+
+        if answer == "yes":
+            return answer
+        if answer == "no":
+            return answer
+        else:
+            continue
+
+def yes_or_short_or_no():
+
+    while True:
+        answer = input("Your answer (yes/short/no): ")
+
+        if answer == "yes":
+            return answer
+        if answer == "no":
+            return answer
+        if answer == "short":
+            return answer
+        else:
+            continue
+
+def get_passphrase():
+
+    while True:
+        my_encoded_and_normalized_passphrase = get_passphrase_inner()
+
+        if my_encoded_and_normalized_passphrase == b'':
+            return b''
+
+        print ("Do you want to see the hash of your passphrase now?")
+        print ("(Security risk: the hash can help attackers bruteforce your passphrase.)")
+        print ("Answer \"short\" if you want to see only two words of the hash.")
+
+        answer = yes_or_short_or_no()
+
+        if answer == "yes":
+            print ("The hash of your passphrase is:", key_to_english(blake2b(my_encoded_and_normalized_passphrase,digest_size=8).digest()), "\n")
+        elif answer == "short":
+            splitted_hash = key_to_english(blake2b(my_encoded_and_normalized_passphrase,digest_size=8).digest()).split()
+            print ("The hash of your passphrase is: (only first two words)", splitted_hash[0], splitted_hash[1], "\n")
+           
+        print ("Do you want to continue with this passphrase?")
+
+        answer = yes_or_no()
+
+        if answer == "yes":
+            return my_encoded_and_normalized_passphrase
+        else:
+            continue
 
 
 # Copied from https://github.com/warner/python-ecdsa/blob/master/src/ecdsa/util.py
@@ -268,27 +389,56 @@ def string_to_number(string):
     return int(binascii.hexlify(string), 16)
 
 
+def print_128_bit_secret(label,my_128_bit_secret):
+
+    my_128_bit_secret_HEX = binascii.b2a_hex(my_128_bit_secret).decode("utf-8")
+
+    print ("\n\nThe", label, "128-bit digest in hex format:", my_128_bit_secret_HEX)
+
+    print ("\nThe", label, "128-bit digest in base64 format:", binascii.b2a_base64(my_128_bit_secret).decode("utf-8"))
+
+    print ("\nThe", label, "128-bit digest in BIP39 mnemonic format:\n\n", mnemonic.Mnemonic('english').to_mnemonic(my_128_bit_secret))
+
+    print ("\n\nThe", label, "128-bit digest in RFC1751 mnemonic format:\n\n", key_to_english(my_128_bit_secret))
+
+    my_128_bit_secret_decimal = string_to_number(my_128_bit_secret)
+
+    print ("\n\nThe", label, "128-bit digest in decimal format:\n\n", my_128_bit_secret_decimal)
+
+    if my_128_bit_secret_decimal < 1000000000:
+        print ("Warning! The key is too small! Do not use, small entropy!.")
+
+
 def print_the_secrets(my_256_bit_secret):
-    print ("\n\n========== The same 256 bit digest in different formats: ==========")
+
+    print ("\n\n========== 128-bit digests (12 BIP39 words): ==========")
+
+    print ("\n\nThe two 128-bit digests are created by cutting the 256-bit digest.")
+
+    print_128_bit_secret("FIRST",my_256_bit_secret[0:16])
+    print_128_bit_secret("SECOND",my_256_bit_secret[16:32])
+
+    print ("\n\nFor better security use only the 256-bit digest (24 BIP39 words).")
+    print ("Don't forget that the two 128-bit digests were created by cutting the 256-bit digest in half.")
+
+    print ("\n\n========== The same 256-bit digest in different formats: ==========")
 
     # we need it also for bitcoin.encode_privkey()
     my_256_bit_secret_HEX = binascii.b2a_hex(my_256_bit_secret).decode("utf-8")
 
-    print ("\n\nThe 256 bit digest in hex format:", my_256_bit_secret_HEX)
+    print ("\n\nThe 256-bit digest in hex format:", my_256_bit_secret_HEX)
 
-    print ("\nThe 256 bit digest in base64 format:", binascii.b2a_base64(my_256_bit_secret).decode("utf-8"))
+    print ("\nThe 256-bit digest in base64 format:", binascii.b2a_base64(my_256_bit_secret).decode("utf-8"))
 
-    print ("\nThe 256 bit digest in BIP39 mnemonic format:\n\n", mnemonic.Mnemonic('english').to_mnemonic(my_256_bit_secret))
+    print ("\nThe 256-bit digest in BIP39 mnemonic format:\n\n", mnemonic.Mnemonic('english').to_mnemonic(my_256_bit_secret))
 
-    print ("\n\nThe 256 bit digest in RFC1751 mnemonic format:\n\n", key_to_english(my_256_bit_secret))
+    print ("\n\nThe 256-bit digest in RFC1751 mnemonic format:\n\n", key_to_english(my_256_bit_secret))
 
     CURVE_ORDER = 115792089237316195423570985008687907852837564279074904382605163141518161494337
 
     my_256_bit_secret_decimal = string_to_number(my_256_bit_secret)
 
-    print ("\n\nThe 256 bit digest in decimal format:\n\n", my_256_bit_secret_decimal)
-
-    print ("\n\n* * * WARNING! This is the same 256 bit digest in different formats! * * *\n\n")
+    print ("\n\nThe 256-bit digest in decimal format:\n\n", my_256_bit_secret_decimal)
 
     if my_256_bit_secret_decimal < ( CURVE_ORDER - 1000000000 ):
         if my_256_bit_secret_decimal > 1000000000:
@@ -300,7 +450,7 @@ def print_the_secrets(my_256_bit_secret):
 
     my_256_bit_secret_WIF = bitcoin.encode_privkey(my_256_bit_secret_HEX,"wif_compressed")
 
-    print ("\n\nThe 256 bit digest in compressed WIF format:\n\n", my_256_bit_secret_WIF)
+    print ("\n\nThe 256-bit digest in compressed WIF format:\n\n", my_256_bit_secret_WIF)
 
     print ("\nThe address derived from the above WIF key:",bitcoin.privkey_to_address(my_256_bit_secret_WIF))
 

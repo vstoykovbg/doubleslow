@@ -38,8 +38,11 @@ mysalt = get_big_enough_chunk_of_salt()
 
 def get_iterations_for_stage_1():
     while True:
+        my_input = input("Number of iterations: ")
+        if my_input == "":
+            return 1
         try:
-            iterations = int(input("Number of iterations: "))
+            iterations = int(my_input)
         except ValueError as detail:
             print("  Wrong input.", detail)
             continue
@@ -50,8 +53,11 @@ def get_iterations_for_stage_1():
 
 def get_iterations_for_stage_2():
     while True:
+        my_input = input("Number of iterations on the second stage (external key stretching): ")
+        if my_input == "":
+            return 0
         try:
-            iterations = int(input("Number of iterations on the second stage (external key stretching): "))
+            iterations = int(my_input)
         except ValueError as detail:
             print("  Wrong input.", detail)
             continue
