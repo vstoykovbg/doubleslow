@@ -143,6 +143,7 @@ I don't know why this worked.
 - IPFS: Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F
 - IPFS gateways: [local](http://localhost:8080/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F), [1](https://gateway.pinata.cloud/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F), [2](https://ninetailed.ninja/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F), [3](https://cloudflare-ipfs.com/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F), [4](https://ipfs.io/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F), [5](https://dweb.link/ipfs/Qmcs9gTBQGCbuao9FuqN3seEEPvpw6vQM9GGmjMPbBiG2F)
 - [doubleslow.wordpress.com](https://doubleslow.wordpress.com/)
+- [Google Drive](https://drive.google.com/drive/folders/1WM31SRsOq7tjjcOzl_I7n3244BXT-Co5?usp=sharing)
 
 ## Discussion
 
