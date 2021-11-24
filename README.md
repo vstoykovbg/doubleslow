@@ -17,7 +17,7 @@ Optionally, the second stage key stretching can be disabled by entering 0 as num
 
 Some enthusiasts can even implement additional ("stage zero") key stretching (with some low-RAM intensive key stretching functions, on very old computers or microcontrollers). It's more difficult to hide malware inside ancient computers or simple microcontrollers.
 
-Don't forget to make your own backup of the scripts before using them. And write down which versions of the scripts were used along with your salt and settings (number of iterations, RAM usage). Future versions may not be compatible!
+Don't forget to make your own backup of the scripts before using them. And write down which versions of the scripts were used along with your salt and settings (number of iterations, RAM usage). Future versions may not be compatible! I made some UX improvements and changed how the salt is interpreted (in some cases whitespaces are ignored and the salt is interpreted differently - not as a UTF-8 string).
 
 The salt used by the `doubleslow-base.py` can be in different formats:
 
@@ -106,6 +106,33 @@ You may need to install these Python 3 modules (if they are not already installe
 $ pip3 install -r requirements.txt
 ```
 
+## Bug: `AttributeError: module 'bitcoin' has no attribute 'encode_privkey'`
+
+I got this error message:
+
+```
+Traceback (most recent call last):
+  File "./doubleslow-base.py", line 136, in <module>
+    print_the_secrets(digest256_final)
+  File "/home/valentin/python/doubleslow/doubleslow_module.py", line 301, in print_the_secrets
+    my_256_bit_secret_WIF = bitcoin.encode_privkey(my_256_bit_secret_HEX,"wif_compressed")
+AttributeError: module 'bitcoin' has no attribute 'encode_privkey'
+valentin@computer:~/python/doubleslow$ 
+```
+
+The solution was to install the module 'bitcoin' again:
+
+```
+$ pip3 install --user bitcoin
+Collecting bitcoin
+Installing collected packages: bitcoin
+Successfully installed bitcoin-1.1.42
+```
+
+I don't know why this worked.
+
+[Topic about this on StackExchange](https://bitcoin.stackexchange.com/questions/106312/python-code-import-error-cannot-import-name-privtopub-from-bitcoin) - I was not the first to encounter this bug.
+
 ## Video demonstration
 
 [![Video demo](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
@@ -114,7 +141,7 @@ $ pip3 install -r requirements.txt
 
 - BitTorrent: magnet:?xt=urn:btih:c244989104b60e10a7cfa04d01a377e9a9cf4317&dn=doubleslow-backup
 - IPFS: QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w
-- IPFS gateways:[1](https://ipfs.io/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [2](https://cloudflare-ipfs.com/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [3](https://gateway.pinata.cloud/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [4](https://dweb.link/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w)
+- IPFS gateways:[1](https://ipfs.io/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [2](https://cloudflare-ipfs.com/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [3](https://gateway.pinata.cloud/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w), [4](https://dweb.link/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w),[local](http://localhost:8080/ipfs/QmSHKUeBwMpb4DQTgXTdqdWQUzQYGZuTEP3TY8GbyCZF5w)
 - [Google Drive](https://drive.google.com/drive/folders/1WM31SRsOq7tjjcOzl_I7n3244BXT-Co5?usp=sharing)
 - [doubleslow.wordpress.com](https://doubleslow.wordpress.com/)
 
