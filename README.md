@@ -133,6 +133,8 @@ I don't know why this worked.
 
 [Topic about this on StackExchange](https://bitcoin.stackexchange.com/questions/106312/python-code-import-error-cannot-import-name-privtopub-from-bitcoin) - I was not the first to encounter this bug.
 
+For ideas how to use Doubleslow securely: [How Jason Bourne Stores His Bitcoin in 2021](https://github.com/vstoykovbg/jb)
+
 ## Video demonstration
 
 [![Video demo](http://img.youtube.com/vi/O-MAZZgX868/0.jpg)](http://www.youtube.com/watch?v=O-MAZZgX868)
