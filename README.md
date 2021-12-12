@@ -101,7 +101,7 @@ With version `v0.0.2` the output is:
 
 ## Creating a valid Electrum segwit seed
 
-You can make a valid Electrum segwit seed with the script `make-valid-electrum-segwit-seed.py`. The input string can contain arbitrary words. Also you can change the dictionary `electrum_words.txt` and the checksum will still work (it's not dependent on a dictionary like BIP39).
+You can make a valid Electrum segwit seed with the script `make-valid-electrum-segwit-seed.py`. The input string can contain arbitrary words. Also, you can change the dictionary `electrum_words.txt` and the checksum will still work (it's not dependent on a dictionary like the BIP39 wordlist).
 
 Example:
 
