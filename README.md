@@ -99,6 +99,44 @@ With version `v0.0.2` the output is:
   
  ```prepare embrace goat floor lounge eight evil churn entire vintage logic state obey refuse embark saddle potato clap release rapid tackle aunt kit cable```</blockquote>
 
+## Creating a valid Electrum segwit seed
+
+You can make a valid Electrum segwit seed with the script `make-valid-electrum-segwit-seed.py`. The input string can contain arbitrary words. Also you can change the dictionary `electrum_words.txt` and the checksum will still work (it's not dependent on a dictionary like BIP39).
+
+Example:
+
+```
+$ ./make-valid-electrum-segwit-seed.py 
+Please enter the seed to be amended: prepare embrace goat floor lounge eight evil churn entire vintage logic state
+Normalizing the input string with NFKD...
+The seed has not been changed by the NFKD normalization.
+The NFKC version is the same as NFKD.
+Computing...
+
+prepare embrace goat floor lounge eight evil churn entire vintage logic state abandon skull 
+
+```
+
+Another example with arbitrary words (not from the BIP39 standard):
+
+```
+$ ./make-valid-electrum-segwit-seed.py 
+Please enter the seed to be amended: стринг на кирилица юыэ тест Ὕπνος Ἡμέρα Γαῖα Ἔρως hehehe 🐈 hmmm it works even with a cat
+Normalizing the input string with NFKD...
+The seed has not been changed by the NFKD normalization.
+* * * Warning! The NFKC version is DIFFERENT than the NFKD version.
+Computing...
+
+стринг на кирилица юыэ тест Ὕπνος Ἡμέρα Γαῖα Ἔρως hehehe 🐈 hmmm it works even with a cat candy 
+
+```
+
+It works perfectly even with a cat in the seed.
+
+![Cat in the segwit seed](https://i.imgur.com/BoSEgxO.png)
+
+![Electrum works even with a cat in the seed](https://i.imgur.com/3tGwnsQ.png)
+
 
 ## Dependencies
 
