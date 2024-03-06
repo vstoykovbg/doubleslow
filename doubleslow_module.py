@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-from Cryptodome.Util.RFC1751 import english_to_key
-from Cryptodome.Util.RFC1751 import key_to_english
+from Crypto.Util.RFC1751 import english_to_key
+from Crypto.Util.RFC1751 import key_to_english
 
 from hashlib import sha512
 from hashlib import sha256
